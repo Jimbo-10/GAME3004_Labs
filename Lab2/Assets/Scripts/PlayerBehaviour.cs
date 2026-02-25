@@ -59,6 +59,13 @@ public class PlayerBehaviour : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.CompareTag("Hazard"))
+        {
+            Debug.LogError("Got Hit");
+        }
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
