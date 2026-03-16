@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -18,10 +19,13 @@ public class MapGenerator : MonoBehaviour
     [Header("Tile Properties")]
     public GameObject threeDTilePrefab;
     public Transform tileParent;
+
+    List<GameObject> grid = new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Regenerate();
+        DisableColliderAndMeshRenderers();
     }
 
     private void Regenerate()
@@ -42,11 +46,44 @@ public class MapGenerator : MonoBehaviour
                     {
                         var tile = Instantiate(threeDTilePrefab, new Vector3(x,y,z), Quaternion.identity);
                         tile.transform.SetParent(tileParent);
-
+                        grid.Add(tile);
                     }
                 }
                 
             }
+        }
+    }
+
+    private void DisableColliderAndMeshRenderers()
+    {
+        // detect if each tile has Contacts with each face around
+
+        var normalArray = new Vector3[] {Vector3.up, Vector3.down, Vector3.forward, Vector3.back, Vector3.right, Vector3.left };
+        List<GameObject> disabledTiles = new List<GameObject>();
+
+        foreach(GameObject tile in grid)
+        {
+            int collisionCounter = 0;
+            for(int i = 0;  i < normalArray.Length; i++)
+            {
+                if(Physics.Raycast(tile.transform.position, normalArray[i], tile.transform.localScale.magnitude * 0.5f))
+                {
+                    collisionCounter++;
+                }
+            }
+            if(collisionCounter > 5)
+            {
+                disabledTiles.Add(tile);
+            }
+        }
+
+        foreach(GameObject tile in disabledTiles)
+        {
+            var boxCollider = tile.GetComponent<BoxCollider>();
+            var meshRenderer = tile.GetComponent<MeshRenderer>();
+
+            boxCollider.enabled = false;
+            meshRenderer.enabled = true;
         }
     }
 }
