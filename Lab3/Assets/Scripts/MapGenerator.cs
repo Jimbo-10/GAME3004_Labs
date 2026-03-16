@@ -11,6 +11,9 @@ public class MapGenerator : MonoBehaviour
     [Range(8, 64)]
     public int depth = 8;
 
+    private int startHeight, startWidth, startDepth;
+    private float startMin, startMax;
+
     [Header("Scaling Values")]
     [Range(8, 64)]
     public float min = 16.0f;
@@ -24,8 +27,37 @@ public class MapGenerator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Initialize();
         Regenerate();
         DisableColliderAndMeshRenderers();
+    }
+
+    void Update()
+    {
+        if(startWidth != width || startDepth != depth || startHeight != height || startMin != min || startMax != max)
+        {
+            Reset();
+            Regenerate();
+            DisableColliderAndMeshRenderers();
+            Initialize();
+        }
+    }
+
+    private void Initialize()
+    {
+        startWidth = width;
+        startDepth = depth;
+        startHeight = height;
+        startMax = max;
+        startMin = min;
+    }
+    private void Reset()
+    {
+        foreach(GameObject tile in grid)
+        {
+            Destroy(tile);
+        }
+        grid.Clear();
     }
 
     private void Regenerate()
