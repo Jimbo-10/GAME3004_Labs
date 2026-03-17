@@ -37,7 +37,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -83,6 +83,15 @@
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PickAxeHit",
+                    "type": "Button",
+                    "id": "ea50ed20-32fc-4fcb-a572-29d3452a59e3",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -473,6 +482,17 @@
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50b411ae-2943-4042-b940-06848e068b99",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickAxeHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -861,7 +881,7 @@
                 {
                     "name": "",
                     "id": "c52c8e0b-8179-41d3-b8a1-d149033bbe86",
-                    "path": "<Gamepad>/rightStick",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -872,7 +892,7 @@
                 {
                     "name": "",
                     "id": "e1394cbc-336e-44ce-9ea8-6007ed6193f7",
-                    "path": "<Mouse>/delta",
+                    "path": "<Pen>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

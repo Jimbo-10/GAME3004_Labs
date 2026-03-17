@@ -23,7 +23,9 @@ public class PlayerBehaviour : MonoBehaviour
     InputActionAsset inputActions;
     InputAction movementInput;
     InputAction jumpInput;
+    InputAction pickAxeHitInput;
 
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,8 @@ public class PlayerBehaviour : MonoBehaviour
         controller = GetComponent<CharacterController>();
         movementInput = inputActions.FindAction("Move");
         jumpInput = inputActions.FindAction("Jump");
+        pickAxeHitInput = inputActions.FindAction("PickAxeHit");
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -57,6 +61,16 @@ public class PlayerBehaviour : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (pickAxeHitInput.IsPressed())
+        {
+            animator.SetTrigger("Trigger");
+        }
+    }
+
+    private void DestroyTile()
+    {
+
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -65,6 +79,13 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.LogError("Got Hit");
         }
+
+        if (other.CompareTag("Tile"))
+        {
+            Debug.LogError("Triggered");
+            Destroy(other);
+        }
+        
     }
     void OnDrawGizmos()
     {

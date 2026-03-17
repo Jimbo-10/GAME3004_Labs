@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 6000637576171946325}
   - component: {fileID: 2606604725918875469}
   - component: {fileID: 8214213582278792568}
-  m_Layer: 0
+  - component: {fileID: -6128759079154870603}
+  - component: {fileID: 8272895645454798509}
+  m_Layer: 6
   m_Name: Tile3D
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,3 +113,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6128759079154870603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942285220350510220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b7f47e27e337643b9fdec12faa5c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &8272895645454798509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942285220350510220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b7f47e27e337643b9fdec12faa5c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileBehavior

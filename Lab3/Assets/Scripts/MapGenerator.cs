@@ -43,6 +43,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+
     private void Initialize()
     {
         startWidth = width;
