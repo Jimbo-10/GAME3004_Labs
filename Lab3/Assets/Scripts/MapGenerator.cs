@@ -97,10 +97,16 @@ public class MapGenerator : MonoBehaviour
         foreach(GameObject tile in grid)
         {
             int collisionCounter = 0;
+            RaycastHit hit;
+
             for(int i = 0;  i < normalArray.Length; i++)
             {
-                if(Physics.Raycast(tile.transform.position, normalArray[i], tile.transform.localScale.magnitude * 0.5f))
+
+                bool isHitted = Physics.Raycast(tile.transform.position, normalArray[i], out hit, tile.transform.localScale.magnitude * 0.5f);
+
+                if (isHitted && hit.collider.CompareTag("Tile"))
                 {
+                    hit.transform.GetComponent<TileBehavior>().AddNeighbour(tile);
                     collisionCounter++;
                 }
             }
@@ -112,11 +118,7 @@ public class MapGenerator : MonoBehaviour
 
         foreach(GameObject tile in disabledTiles)
         {
-            var boxCollider = tile.GetComponent<BoxCollider>();
-            var meshRenderer = tile.GetComponent<MeshRenderer>();
-
-            boxCollider.enabled = false;
-            meshRenderer.enabled = true;
+            tile.GetComponent<TileBehavior>().InActiveTile();
         }
     }
 }
