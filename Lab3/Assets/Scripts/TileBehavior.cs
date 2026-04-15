@@ -57,6 +57,20 @@ public class TileBehavior : MonoBehaviour
         meshRenderer.enabled = false;
     }
 
+    public void ActivateTile()
+    {
+        isActiveTile = true;
+
+        var boxCollider = transform.GetComponent<BoxCollider>();
+        var meshRenderer = transform.GetComponent<MeshRenderer>();
+
+        boxCollider.enabled = true;
+        meshRenderer.enabled = true;
+
+        type = (TileType)Random.Range(0, System.Enum.GetValues(typeof(TileType)).Length);
+        UpdateTile();
+    }
+
     void UpdateTile()
     {
         switch (type)
@@ -85,20 +99,13 @@ public class TileBehavior : MonoBehaviour
         }
     }
 
-    public void ActivateTile()
+    /*void TileActions()
     {
-        isActiveTile = true;
+        if(type == TileType.Dirt)
+        {
 
-        var boxCollider = transform.GetComponent<BoxCollider>();
-        var meshRenderer = transform.GetComponent<MeshRenderer>();
-
-        boxCollider.enabled = true;
-        meshRenderer.enabled = true;
-
-        type = (TileType)Random.Range(0, System.Enum.GetValues(typeof(TileType)).Length);
-        UpdateTile();
-    }
-
+        }
+    }*/
     public void AddNeighbour(GameObject tile)
     {
         neighbourTiles.Add(tile);
